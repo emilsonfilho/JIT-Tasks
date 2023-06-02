@@ -8,6 +8,11 @@ const connection = new postgres.Pool({
   port: "5432",
 });
 
-connection.connect();
+try {
+  connection.connect();
+  console.log("connection - database on");
+} catch (error) {
+  console.log(error.message);
+}
 
 export default connection;
