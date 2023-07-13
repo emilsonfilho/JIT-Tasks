@@ -1,78 +1,55 @@
-class Pessoa {
-    _pessoaId;
-    _pessoaNome;
-    _pessoaEmail;
-    _pessoaMatricula;
-    _pessoaCurso;
-    _pessoaRfid;
-    _pessoaCpf;
-    _pessoaExterna;
-    _pessoaResponsavel;
+class Petiano {
+    _petianoId;
+    _petianoNome;
+    _petianoCurso;
+    _petianoDataIngresso;
+    _petianoDataSaida;
+    _petianoCaminhoFoto;
 
-    constructor(pessoaNome, pessoaEmail, pessoaMatricula, pessoaCurso, pessoaRfid, pessoaCpf, pessoaExterna, pessoaResponsavel) {
-        this._pessoaNome = pessoaNome;
-        this._pessoaEmail = pessoaEmail;
-        this._pessoaMatricula = pessoaMatricula;
-        this._pessoaCurso = pessoaCurso;
-        this._pessoaRfid = pessoaRfid;
-        this._pessoaCpf = pessoaCpf;
-        this._pessoaExterna = pessoaExterna;
-        this._pessoaResponsavel = pessoaResponsavel;
+    constructor(petianoNome, petianoCurso, petianoDataIngresso, petianoDataSaida, petianoCaminhoFoto) {
+        this._petianoNome = petianoNome;
+        this._petianoCurso = petianoCurso;
+        this._petianoDataIngresso = petianoDataIngresso;
+        this._petianoDataSaida = petianoDataSaida;
+        this._petianoCaminhoFoto = petianoCaminhoFoto;
     }
 
-    get pessoaId() {
-        return this._pessoaId;
+    get petianoId() {
+        return this._petianoId;
     }
-    get pessoaNome() {
-        return this._pessoaNome;
+    get petianoNome() {
+        return this._petianoNome;
     }
-    get pessoaEmail() {
-        return this._pessoaEmail;
+    get petianoCurso() {
+        return this._petianoCurso;
     }
-    get pessoaMatricula() {
-        return this._pessoaMatricula;
+    get petianoDataIngresso() {
+        return this._petianoDataIngresso;
     }
-    get pessoaCurso() {
-        return this._pessoaCurso;
+    get petianoDataSaida() {
+        return this._petianoDataSaida;
     }
-    get pessoaRfid() {
-        return this._pessoaRfid;
-    }
-    get pessoaCpf() {
-        return this._pessoaCpf;
-    }
-    get pessoaExterna() {
-        return this._pessoaExterna;
-    }
-    get pessoaResponsavel() {
-        return this._pessoaResponsavel;
+    get petianoCaminhoFoto() {
+        return this._petianoCaminhoFoto;
     }
 
-    set pessoaNome(value) {
-        this._pessoaNome = value;
+    set petianoNome(value) {
+        this._petianoNome = value;
     }
-    set pessoaEmail(value) {
-        this._pessoaEmail = value;
+    set petianoCurso(value) {
+        this._petianoCurso = value;
     }
-    set pessoaMatricula(value) {
-        this._pessoaMatricula = value;
+    set petianoDataIngresso(value) {
+        this._petianoDataIngresso = value;
     }
-    set pessoaCurso(value) {
-        this._pessoaCurso = value;
+    set petianoDataSaida(value) {
+        this._petianoDataSaida = value;
     }
-    set pessoaRfid(value) {
-        this._pessoaRfid = value;
+    set petianoCaminhoFoto(value) {
+        this._petianoCaminhoFoto = value;
     }
-    set pessoaCpf(value) {
-        this._pessoaCpf = value;
-    }
-    set pessoaExterna(value) {
-        this._pessoaExterna = value;
-    }
-    set pessoaResponsavel(value) {
-        this._pessoaResponsavel = value;
-    }
+
 
 }
 
-export default Pessoa;
+export default Petiano;
