@@ -38,7 +38,7 @@ class EventoTipoRepository {
 
     findByNome(nome) {
         let nome2 = "%" + nome + "%";
-        const sql = "SELECT * FROM evento_tipo WHERE event_tipo_nome LIKE $1;";
+        const sql = "SELECT * FROM evento_tipo WHERE evento_tipo_nome LIKE $1;";
         return this.queryEventoTipo(sql, [nome2]);
     }
 
