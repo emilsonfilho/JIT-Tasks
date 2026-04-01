@@ -1,7 +1,7 @@
-import Aluno from "../model/Aluno.js";
-import AlunoRepository from "../repositories/AlunoRepository.js";
+import Aluno from "../model/Task.js";
+import AlunoRepository from "../repositories/TaskRepository.js";
 
-class AlunoController {
+class TaskController {
   async findAll(request, response) {
     try {
       const result = await AlunoRepository.findAll();
