@@ -1,6 +1,6 @@
 import connection from "../../config/database/connection.js";
 
-class AlunoRepository {
+class TaskRepository {
   queryAluno(sql, params = "") {
     return new Promise((resolve, reject) => {
       connection.query(sql, params, (error, result) => {
@@ -18,49 +18,42 @@ class AlunoRepository {
     });
   }
 
-  create(aluno) {
+  create(task) {
     const sql =
-      "INSERT INTO alunos (matricula,nome,curso,status,semestre) VALUES ($1,$2,$3,$4,$5);";
-    return this.queryAluno(sql, [
-      aluno.matricula,
-      aluno.nome,
-      aluno.curso,
-      aluno.status,
-      aluno.semestre,
+      "INSERT INTO tasks (title, description, is_finished, priority_id) VALUES ($1,$2,$3,$4);";
+    return this.queryTask(sql, [
+      task.title,
+      task.description,
+      task.is_finished,
+      task.priority_id,
     ]);
   }
 
   findAll() {
-    const sql = "SELECT * FROM alunos ORDER BY id ASC;";
-    return this.queryAluno(sql);
+    const sql = "SELECT * FROM tasks ORDER BY priority_id DESC, id ASC;";
+    return this.queryTask(sql);
   }
 
   findById(id) {
-    const sql = "SELECT * FROM alunos WHERE id = $1;";
-    return this.queryAluno(sql, [id]);
+    const sql = "SELECT * FROM tasks WHERE id = $1;";
+    return this.queryTask(sql, [id]);
   }
 
-  findByMatricula(matricula) {
-    const sql = "SELECT * FROM alunos WHERE matricula = $1;";
-    return this.queryAluno(sql, [matricula]);
-  }
-
-  update(id, aluno) {
+  update(id, task) {
     const sql =
-      "UPDATE alunos SET matricula=$1,nome=$2, curso=$3, status=$4, semestre=$5 WHERE id = $6;";
-    return this.queryAluno(sql, [
-      aluno.matricula,
-      aluno.nome,
-      aluno.curso,
-      aluno.status,
-      aluno.semestre,
+      "UPDATE tasks SET title=$1, description=$2, is_finished=$3, priority_id=$4 WHERE id = $5;";
+    return this.queryTask(sql, [
+      task.title,
+      task.description,
+      task.is_finished,
+      task.priority_id,
       id,
     ]);
   }
   delete(id) {
-    const sql = "DELETE FROM alunos WHERE id = $1;";
-    return this.queryAluno(sql, [id]);
+    const sql = "DELETE FROM tasks WHERE id = $1;";
+    return this.queryTask(sql, [id]);
   }
 }
 
-export default new AlunoRepository();
+export default new TaskRepository();
