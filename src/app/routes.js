@@ -1,12 +1,12 @@
 import { Router } from "express";
-import AlunoController from "./controllers/AlunoController.js";
+import TaskController from "./controllers/TaskController.js";
 
 const router = Router();
 
-router.get("/alunos", AlunoController.findAll);
-router.get("/alunos/:id", AlunoController.findById);
-router.delete("/alunos/:id", AlunoController.deleteById);
-router.put("/alunos/:id", AlunoController.updateById);
-router.post("/alunos", AlunoController.store);
+router.get("/tasks", TaskController.findAll);
+router.get("/tasks/:id", TaskController.findById);
+router.delete("/tasks/:id", TaskController.deleteById);
+router.put("/tasks/:id", TaskController.updateById);
+router.post("/tasks", TaskController.store);
 
 export default router;

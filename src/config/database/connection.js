@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import postgres from "pg";
 
 const connection = new postgres.Pool({
