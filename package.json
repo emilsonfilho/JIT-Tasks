@@ -1,7 +1,7 @@
 {
-  "name": "jit-model",
+  "name": "JIT-Tasks",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple task management application built with Node.js, Express, and PostgreSQL.",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Emilson Filho",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.0.3",
