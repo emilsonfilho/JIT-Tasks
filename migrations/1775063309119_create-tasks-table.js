@@ -19,7 +19,7 @@ export const up = (pgm) => {
             is_finished BOOLEAN DEFAULT FALSE,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-            priority INT REFERENCES priorities(id)
+            priority_id INT REFERENCES priorities(id)
         )
     `)
 };
