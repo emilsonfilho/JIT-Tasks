@@ -1,7 +1,7 @@
 import connection from "../../config/database/connection.js";
 
 class TaskRepository {
-  queryAluno(sql, params = "") {
+  queryTask(sql, params = "") {
     return new Promise((resolve, reject) => {
       connection.query(sql, params, (error, result) => {
         if (error) {

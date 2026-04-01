@@ -1,10 +1,23 @@
-import Aluno from "../model/Task.js";
-import AlunoRepository from "../repositories/TaskRepository.js";
+import Task from "../model/Task.js";
+import TaskRepository from "../repositories/TaskRepository.js";
 
 class TaskController {
+    _buildTask(body) {
+    return new Task(
+      body.title,
+      body.description,
+      body.is_finished,
+      body.priority_id
+    )
+  }
+
+  _isEmpty(obj) {
+    return !obj || Object.keys(obj).length == 0;
+  }
+
   async findAll(request, response) {
     try {
-      const result = await AlunoRepository.findAll();
+      const result = await TaskRepository.findAll();
       response.json(result);
     } catch (error) {
       response.json(error);
@@ -14,23 +27,9 @@ class TaskController {
   async findById(request, response) {
     const id = request.params.id;
     try {
-      const result = await AlunoRepository.findById(id);
-      if (Object.keys(result).length == 0) {
+      const result = await TaskRepository.findById(id);
+      if (this._isEmpty(result)) {
         response.json({ message: "ID not found" });
-      } else {
-        response.json(result);
-      }
-    } catch (error) {
-      response.json(error);
-    }
-  }
-
-  async findByMatricula(request, response) {
-    const matricula = request.params.matricula;
-    try {
-      const result = await AlunoRepository.findByMatricula(matricula);
-      if (Object.keys(result).length == 0) {
-        response.json({ message: "Matricula not found" });
       } else {
         response.json(result);
       }
@@ -42,19 +41,13 @@ class TaskController {
   async updateById(request, response) {
     const id = request.params.id;
     try {
-      const exists = await AlunoRepository.findById(id);
-      if (Object.keys(exists).length == 0) {
+      const exists = await TaskRepository.findById(id);
+      if (this._isEmpty(exists)) {
         response.json({ message: "ID not found" });
       } else {
         try {
-          const aluno = new Aluno(
-            request.body.matricula,
-            request.body.nome,
-            request.body.curso,
-            request.body.semestre,
-            request.body.status
-          );
-          await AlunoRepository.update(id, aluno);
+          const task = this._buildTask(request.body)
+          await TaskRepository.update(id, task);
           response.json({ message: "Success" });
         } catch (error) {
           response.json(error);
@@ -68,11 +61,11 @@ class TaskController {
   async deleteById(request, response) {
     const id = request.params.id;
     try {
-      const exists = await AlunoRepository.findById(id);
-      if (Object.keys(exists).length == 0) {
+      const exists = await TaskRepository.findById(id);
+      if (this._isEmpty(exists)) {
         response.json({ message: "ID not found" });
       } else {
-        await AlunoRepository.delete(id);
+        await TaskRepository.delete(id);
         response.json({ message: "Success" });
       }
     } catch (error) {
@@ -82,26 +75,10 @@ class TaskController {
 
   async store(request, response) {
     try {
-      const exists = await AlunoRepository.findByMatricula(
-        request.body.matricula
-      );
-      if (Object.keys(exists).length > 0) {
-        response.json({ message: "User already registered." });
-      } else {
-        try {
-          const aluno = new Aluno(
-            request.body.matricula,
-            request.body.nome,
-            request.body.curso,
-            request.body.semestre,
-            request.body.status
-          );
-          await AlunoRepository.create(aluno);
-          response.json({ message: "Success" });
-        } catch (error) {
-          response.json(error);
-        }
-      }
+      
+      const task = this._buildTask(request.body)
+      await TaskRepository.create(task);
+      response.json({ message: "Success" });
     } catch (error) {
       response.json(error);
     }
@@ -109,4 +86,4 @@ class TaskController {
 }
 
 //using singleton pattern
-export default new AlunoController();
+export default new TaskController();
