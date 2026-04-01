@@ -2,19 +2,6 @@ import Task from "../model/Task.js";
 import TaskRepository from "../repositories/TaskRepository.js";
 
 class TaskController {
-    _buildTask(body) {
-    return new Task(
-      body.title,
-      body.description,
-      body.is_finished,
-      body.priority_id
-    )
-  }
-
-  _isEmpty(obj) {
-    return !obj || Object.keys(obj).length == 0;
-  }
-
   async findAll(request, response) {
     try {
       const result = await TaskRepository.findAll();
@@ -28,7 +15,7 @@ class TaskController {
     const id = request.params.id;
     try {
       const result = await TaskRepository.findById(id);
-      if (this._isEmpty(result)) {
+      if (!result || Object.keys(result).length === 0) {
         response.json({ message: "ID not found" });
       } else {
         response.json(result);
@@ -42,11 +29,11 @@ class TaskController {
     const id = request.params.id;
     try {
       const exists = await TaskRepository.findById(id);
-      if (this._isEmpty(exists)) {
+      if (!exists || Object.keys(exists).length === 0) {
         response.json({ message: "ID not found" });
       } else {
         try {
-          const task = this._buildTask(request.body)
+          const task = new Task(request.body.title, request.body.description, request.body.is_finished, request.body.priority_id);
           await TaskRepository.update(id, task);
           response.json({ message: "Success" });
         } catch (error) {
@@ -62,7 +49,7 @@ class TaskController {
     const id = request.params.id;
     try {
       const exists = await TaskRepository.findById(id);
-      if (this._isEmpty(exists)) {
+      if (!exists || Object.keys(exists).length === 0) {
         response.json({ message: "ID not found" });
       } else {
         await TaskRepository.delete(id);
@@ -75,8 +62,7 @@ class TaskController {
 
   async store(request, response) {
     try {
-      
-      const task = this._buildTask(request.body)
+      const task = new Task(request.body.title, request.body.description, request.body.is_finished, request.body.priority_id);
       await TaskRepository.create(task);
       response.json({ message: "Success" });
     } catch (error) {
