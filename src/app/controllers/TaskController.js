@@ -73,7 +73,7 @@ class TaskController {
   async getMetrics(request, response) {
     try {
       const result = await TaskRepository.getDailyMetrics();
-      response.json(result);
+      response.json(result[0]);
     } catch (error) {
       response.json(error);
     }
