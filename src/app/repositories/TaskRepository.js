@@ -50,9 +50,21 @@ class TaskRepository {
       id,
     ]);
   }
+
   delete(id) {
     const sql = "DELETE FROM tasks WHERE id = $1;";
     return this.queryTask(sql, [id]);
+  }
+
+  getDailyMetrics() {
+    const sql = `
+      SELECT
+        COUNT(id) FILTER (WHERE due_date::DATE < CURRENT_DATE AND is_finished = false) AS overdated,
+        COUNT(id) FILTER (WHERE due_date::DATE = CURRENT_DATE AND is_finished = false) AS pending,
+        COUNT(id) FILTER (WHERE due_date::DATE = CURRENT_DATE and is_finished = true) AS done
+      FROM tasks
+    `;
+    return this.queryTask(sql);
   }
 }
 
