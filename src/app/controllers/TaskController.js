@@ -11,6 +11,15 @@ class TaskController {
     }
   }
 
+  async findAllPending(request, response) {
+    try {
+      const result = await TaskRepository.findAllPending();
+      response.json(result);
+    } catch (error) {
+      response.json(error);
+    }
+  }
+
   async findById(request, response) {
     const id = request.params.id;
     try {

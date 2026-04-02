@@ -34,6 +34,19 @@ class TaskRepository {
     return this.queryTask(sql);
   }
 
+  findAllPending() {
+    const sql = `
+      SELECT 
+        t.id, t.title, t.description, t.due_date,
+        p.name AS priority_name
+      FROM tasks t
+      JOIN priorities p ON t.priority_id = p.id
+      WHERE is_finished = false
+      ORDER BY t.due_date ASC, p.id DESC, t.id ASC;
+    `;
+    return this.queryTask(sql);
+  }
+
   findById(id) {
     const sql = "SELECT * FROM tasks WHERE id = $1;";
     return this.queryTask(sql, [id]);
