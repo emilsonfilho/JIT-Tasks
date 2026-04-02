@@ -38,7 +38,7 @@ class TaskRepository {
     const sql = `
       SELECT 
         t.id, t.title, t.description, t.due_date,
-        p.name AS priority_name
+        json_build_object('id', p.id, 'name', p.name) AS priority
       FROM tasks t
       JOIN priorities p ON t.priority_id = p.id
       WHERE is_finished = false
