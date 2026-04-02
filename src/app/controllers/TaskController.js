@@ -69,6 +69,16 @@ class TaskController {
       response.json(error);
     }
   }
+
+  async getMetrics(request, response) {
+    try {
+      const result = await TaskRepository.getDailyMetrics();
+      console.log(result)
+      response.json(result);
+    } catch (error) {
+      response.json(error);
+    }
+  }
 }
 
 //using singleton pattern
