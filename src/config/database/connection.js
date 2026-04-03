@@ -1,8 +1,8 @@
-import 'dotenv/config';
+import "dotenv/config";
 import postgres from "pg";
 
 const connection = new postgres.Pool({
-  connectionString: process.env.DATABASE_URL
+  connectionString: process.env.DATABASE_URL,
 });
 
 try {

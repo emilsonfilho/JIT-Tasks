@@ -1,9 +1,9 @@
 class Priority {
-    _name;
+  _name;
 
-    constructor(name) {
-        this._name = name;
-    }
+  constructor(name) {
+    this._name = name;
+  }
 }
 
 export default Priority;

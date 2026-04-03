@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import "dotenv/config";
 
 /**
  * @type {import('node-pg-migrate').ColumnDefinitions | undefined}
@@ -11,7 +11,7 @@ export const shorthands = undefined;
  * @returns {Promise<void> | void}
  */
 export const up = (pgm) => {
-    pgm.sql(`
+  pgm.sql(`
         CREATE TABLE tasks (
             id SERIAL PRIMARY KEY,
             title VARCHAR(255) NOT NULL,
@@ -21,7 +21,7 @@ export const up = (pgm) => {
 
             priority_id INT REFERENCES priorities(id)
         )
-    `)
+    `);
 };
 
 /**
@@ -30,5 +30,5 @@ export const up = (pgm) => {
  * @returns {Promise<void> | void}
  */
 export const down = (pgm) => {
-    pgm.sql(`DROP TABLE tasks`)
+  pgm.sql(`DROP TABLE tasks`);
 };

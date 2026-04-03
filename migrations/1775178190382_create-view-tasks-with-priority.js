@@ -9,7 +9,7 @@ export const shorthands = undefined;
  * @returns {Promise<void> | void}
  */
 export const up = (pgm) => {
-    pgm.sql(`
+  pgm.sql(`
         CREATE VIEW vw_tasks_with_priority AS
         SELECT 
         t.id, t.title, t.description, t.due_date, t.is_finished,
@@ -26,5 +26,5 @@ export const up = (pgm) => {
  * @returns {Promise<void> | void}
  */
 export const down = (pgm) => {
-    pgm.sql(`DROP VIEW IF EXISTS vw_tasks_with_priority;`);
+  pgm.sql(`DROP VIEW IF EXISTS vw_tasks_with_priority;`);
 };

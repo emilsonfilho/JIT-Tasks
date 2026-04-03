@@ -9,7 +9,7 @@ export const shorthands = undefined;
  * @returns {Promise<void> | void}
  */
 export const up = (pgm) => {
-    pgm.sql(`
+  pgm.sql(`
         ALTER TABLE tasks
         ADD COLUMN finished_date TIMESTAMPTZ;
     `);
@@ -21,7 +21,7 @@ export const up = (pgm) => {
  * @returns {Promise<void> | void}
  */
 export const down = (pgm) => {
-    pgm.sql(`
+  pgm.sql(`
         ALTER TABLE tasks
         DROP COLUMN finished_date;
     `);

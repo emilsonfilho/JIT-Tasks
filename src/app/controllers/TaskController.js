@@ -50,7 +50,13 @@ class TaskController {
         response.json({ message: "ID not found" });
       } else {
         try {
-          const task = new Task(request.body.title, request.body.description, request.body.is_finished, request.body.priority_id, request.body.due_date);
+          const task = new Task(
+            request.body.title,
+            request.body.description,
+            request.body.is_finished,
+            request.body.priority_id,
+            request.body.due_date,
+          );
           await TaskRepository.update(id, task);
           response.json({ message: "Success" });
         } catch (error) {
@@ -96,8 +102,14 @@ class TaskController {
 
   async store(request, response) {
     try {
-      console.log(request.body)
-      const task = new Task(request.body.title, request.body.description, request.body.is_finished, request.body.priority_id, request.body.due_date);
+      console.log(request.body);
+      const task = new Task(
+        request.body.title,
+        request.body.description,
+        request.body.is_finished,
+        request.body.priority_id,
+        request.body.due_date,
+      );
       await TaskRepository.create(task);
       response.json({ message: "Success" });
     } catch (error) {
