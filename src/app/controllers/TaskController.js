@@ -19,6 +19,14 @@ class TaskController {
       response.json(error);
     }
   }
+  async findAllFinished(request, response) {
+    try {
+      const result = await TaskRepository.findAllFinished();
+      response.json(result);
+    } catch (error) {
+      response.json(error);
+    }
+  }
 
   async findById(request, response) {
     const id = request.params.id;

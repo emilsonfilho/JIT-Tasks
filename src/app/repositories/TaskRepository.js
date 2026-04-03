@@ -36,13 +36,18 @@ class TaskRepository {
 
   findAllPending() {
     const sql = `
-      SELECT 
-        t.id, t.title, t.description, t.due_date,
-        json_build_object('id', p.id, 'name', p.name) AS priority
-      FROM tasks t
-      JOIN priorities p ON t.priority_id = p.id
+      SELECT * FROM vw_tasks_with_priority
       WHERE is_finished = false
-      ORDER BY t.due_date ASC, p.id DESC, t.id ASC;
+      ORDER BY due_date ASC, priority_id DESC, id ASC;
+    `;
+    return this.queryTask(sql);
+  }
+
+  findAllFinished() {
+    const sql = `
+      SELECT * FROM vw_tasks_with_priority
+      WHERE is_finished = true
+      ORDER BY due_date DESC, priority_id DESC, id ASC;
     `;
     return this.queryTask(sql);
   }
