@@ -18,7 +18,7 @@ export const up = (pgm) => {
         )
     `)
 
-    pgm.sql(` INSERT INTO priorities (name) VALUES ('Prioridade Baixa'), ('Prioridade Média'), ('Prioridade Alta')`)
+    pgm.sql(`INSERT INTO priorities (name) VALUES ('Baixa'), ('Média'), ('Alta')`)
 };
 
 /**

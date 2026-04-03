@@ -1,5 +1,6 @@
 import { Router } from "express";
 import TaskController from "./controllers/TaskController.js";
+import PriorityController from "./controllers/PriorityController.js";
 
 const router = Router();
 
@@ -11,5 +12,7 @@ router.get("/tasks/:id", TaskController.findById);
 router.delete("/tasks/:id", TaskController.deleteById);
 router.put("/tasks/:id", TaskController.updateById);
 router.post("/tasks", TaskController.store);
+
+router.get("/priorities", PriorityController.findAll);
 
 export default router;
