@@ -70,6 +70,11 @@ class TaskRepository {
     ]);
   }
 
+  setStatus(id, isFinished) {
+    const sql = "UPDATE tasks SET is_finished=$1 WHERE id = $2;";
+    return this.queryTask(sql, [isFinished, id]);
+  }
+
   delete(id) {
     const sql = "DELETE FROM tasks WHERE id = $1;";
     return this.queryTask(sql, [id]);
