@@ -62,6 +62,23 @@ class TaskController {
     }
   }
 
+  async updateStatus(request, response) {
+    const id = request.params.id;
+    const { is_finished } = request.body;
+
+    try {
+      const exists = await TaskRepository.findById(id);
+      if (!exists || Object.keys(exists).length === 0) {
+        return response.json({ message: "ID not found" });
+      }
+
+      await TaskRepository.setStatus(id, is_finished);
+      response.json({ message: "Success" });
+    } catch (error) {
+      response.json(error);
+    }
+  }
+
   async deleteById(request, response) {
     const id = request.params.id;
     try {
