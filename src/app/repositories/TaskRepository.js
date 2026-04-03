@@ -80,7 +80,8 @@ class TaskRepository {
       SELECT
         COUNT(id) FILTER (WHERE due_date::DATE < CURRENT_DATE AND is_finished = false) AS overdated,
         COUNT(id) FILTER (WHERE due_date::DATE = CURRENT_DATE AND is_finished = false) AS pending,
-        COUNT(id) FILTER (WHERE due_date::DATE = CURRENT_DATE and is_finished = true) AS done
+        COUNT(id) FILTER (WHERE finished_date::DATE = CURRENT_DATE and is_finished = true) AS done_today,
+        COUNT(id) FILTER (WHERE is_finished = true) AS total_done
       FROM tasks
     `;
     return this.queryTask(sql);
