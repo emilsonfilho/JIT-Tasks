@@ -20,12 +20,13 @@ class TaskRepository {
 
   create(task) {
     const sql =
-      "INSERT INTO tasks (title, description, is_finished, priority_id) VALUES ($1,$2,$3,$4);";
+      "INSERT INTO tasks (title, description, is_finished, priority_id, due_date) VALUES ($1,$2,$3,$4,$5);";
     return this.queryTask(sql, [
       task.title,
       task.description,
       task.is_finished,
       task.priority_id,
+      task.due_date,
     ]);
   }
 
